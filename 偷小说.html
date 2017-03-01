@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+	window.onload=function(){
+		var oText1=document.getElementById('text1');
+		var oText2=document.getElementById('text2');
+		var oBtn=document.getElementById('btn');
+		oBtn.onclick=function(){
+			var re=/<[^<>]+>/g;
+			oText2.value=oText1.value.replace(re,'').replace(/^\s+|\s+$/g,'');
+		}
+	}
+	</script>
+</head>
+<body>
+	<textarea id='text1' cols='40' rows="10"></textarea>
+	<input id="btn" value="转换" type='button'/>
+	<textarea id='text2' cols='40' rows="10"></textarea>
+</body>
+</html>

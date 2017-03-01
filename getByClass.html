@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+	function getByClass(oParent,oClass){
+		var oRes=oParent.getElementsByTagName('*');
+		var re=new RegExp('\\b'+oClass+'\\b','i');
+		//var re=eval('/\\b'+oClass+'\\b/i');
+		var arr=[];
+		for (var i = 0; i < oRes.length; i++) {
+			if(re.test(oRes[i].className)){
+			//if (oRes[i].className==oClass) {
+				arr.push(oRes[i]);
+			};
+		};
+
+		return arr;
+
+	}
+
+	window.onload=function(){
+		var oUl=document.getElementById('uu');
+		var i=0;
+		var oBox=getByClass(oUl,'box');
+		for (var i = 0; i < oBox.length; i++) {
+			oBox[i].style.background='red';
+		};
+		}
+	</script>
+
+</head>
+<body>
+	<ul id="uu"> 
+		<li></li>
+		<li class="a box"></li>
+		<li class="box"></li>
+		<li class="box"></li>
+		<li></li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div1{ width:100px; height:100px; background:red; display:none;}
+</style>
+<script type="text/javascript" src="jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var Json={
+			'hello':'world',
+			'test':{'test':'value'},
+			'array':[{'index1':'array'},{'index2':'array'}]
+		}
+		alert(Json.hello);
+		  $('#div1').text(Json.hello);
+		  $('#div2').text(Json.test.test);
+		  $('#div3').text(Json.array[0].index1);
+		  $('#div4').text(Json.array[1].index2);
+		console.log(Json.hello);
+		console.log(Json.test.test);
+		console.log(Json.array[0].index1);
+		console.log(Json.array[1].index2);
+		
+		
+		
+	});
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3"></div>
+<div id="div4"></div>
+
+
+</body>
+</html>

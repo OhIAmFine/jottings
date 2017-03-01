@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<style type="text/css">
+	#box{width:300px;height: 200px;position: absolute;top: 100px;}
+</style>
+
+<script type="text/javascript" src="jquery-1.12.3.js"></script>
+<script>
+	$(function(){
+		 var inp=$('<input type="button" value="按钮" id="button"/>');
+		$('body').append(inp);
+		$('#button').on("click",function(){
+			var alInp=$('<div id="box"><p>登陆：<input type="text" value="text"/></p><p>登陆：<input type="password" value="password"/></p><p style="padding-left:80px;"><input type="submit" value="提交"/><input type="button" value="关闭" id="close"/></p></div>');
+			$('body').append(alInp);
+			$('#close').click(function(){
+				$('#box').remove();//alInp.remove();
+				alert('1');
+			})
+			alert($(window).height());
+
+			//方法一
+		/*setInterval(function(){
+				changCenter('#box');
+			},1000);*/
+		//方法二
+		/*$(window).scroll(function(){
+			changCenter('#box');
+		});*/
+		//方法三
+		$(window).on("resize scroll",function(){
+				changCenter('#box');
+		});
+
+		})
+		  function changCenter(element){
+    			var y=$(window).height()-$(element).height();
+    			var newY=y/2+$(window).scrollTop();
+    			var newnY=newY;
+    			var timer=null;
+    			if (y<0) {y=-y;};
+    			timer=setInterval(function(){
+    			y++;
+    			if (y==newnY) {
+    			clearInterval(timer);
+    			alert('1'); 
+    			alert(newnY)};
+    			$(element).css('left',($(window).width()-$(element).width())/2+$(window).scrollLeft());
+				$(element).css('top',y);
+    			console.log(y);
+    			},400)
+		
+
+                    }
+
+})
+</script>
+<body style="height:2000px;width:2000px;">
+hemingjuan
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style type="text/css">
+	.div{
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		background: red;
+		top: 100px; 
+	}
+</style>
+<script type="text/javascript">
+	var speed=10;
+	// var Odiv=document.getElementsByTagName('div')[0];
+	function stratmove(){
+	// var Odiv=document.getElementById('div');
+	var Odiv=document.getElementsByTagName('div')[0];
+		setInterval(function(){
+			speed-=(Odiv.offsetLeft-300)/5;
+			speed*=0.5;
+	
+			Odiv.style.left=Odiv.offsetLeft+speed+'px';
+		},30)
+	}
+
+</script>
+</head>
+<body>
+<div class="div" id="div"></div>
+	<input type="submit" value="开始运动" onclick="stratmove()"/>
+<div style="position:absolute;width:1px;height:300px;background:black;left:300px;"></div>
+</body>
+</html>

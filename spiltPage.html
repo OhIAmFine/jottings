@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分页</title>
+</head>
+<style type="text/css">
+	#pageNum{
+		margin-top: 20px;
+	}
+	.changePages{
+		width: 10px;
+		padding: 5px;
+		margin-right: 5px;
+		text-decoration: none;
+		background: blue;
+		color: white;
+	}
+</style>
+
+<script type="text/javascript" src="jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+window.onload=function(){
+	function pagenum(){
+		 var numamout=100;
+		 var num=0;
+		 if (numamout>10) {
+		 	num=10;
+		 }else num=numamout;
+		 for (var i = 1; i <=num; i++) {
+		 	$('<a href="#" class="changePages ">'+i+'</a>').appendTo('#pageNum');
+		 };
+		 $('#pageNum').css('margin-left',($('#pageNum').width()-num*20)/2);
+		 alert($('#pageNum').width()-num*20)
+	}
+	pagenum();
+}
+	
+</script>
+<body>
+	<div id="pageNum" >
+
+	</div>
+</body>
+</html>

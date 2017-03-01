@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+*{
+	padding: 0;
+	margin:0;
+}
+	div{
+		width: 100px;
+		height: 100px;
+		background: red;
+	}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	var Odiv=document.getElementsByTagName('div')[0];
+	Odiv.onmouseover=function(){
+		StartMove(Odiv,200);
+	}
+	Odiv.onmouseout=function(){
+		StartMove(Odiv,50);
+	}
+}
+	var speed=0;
+	var height=50;
+	function StartMove(obj,target){
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function(){
+			
+			speed+=(target-height)/5;
+			speed*=0.7;
+			if (Math.abs(speed)<1&&Math.abs(target-height)<1) {
+				clearInterval(obj.timer);
+				obj.style.height=target+'px';
+			}else{
+			height+=speed;
+				document.getElementById('tex').value+="height"+'\n'+height;
+				obj.style.height=height+'px';
+			}
+			obj.innerHtml=speed;
+		},30)
+	}
+</script>
+<body>
+	<textarea id="tex" cols="40" rows="10"></textarea>
+ 
+	<div></div>
+</body>
+</html>

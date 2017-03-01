@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+	<script type="text/javascript">
+	window.onload=function(){
+		var oFo=document.getElementById('form1');
+		oFo.btn1.onclick=function(){
+			alert(1);
+			alert(oFo.ra);
+		}
+		oFo.onsubmit=function(){
+			alert(2);
+		}
+		oFo.text1.onchange=function(){
+			alert(this.value);
+		}
+	for (var i=0; i<oFo.che.length; i++) {
+
+		oFo.che[i].onchange = function() {
+			
+			//alert(1);
+			
+			if (this.checked) {
+				alert('你选择了：' + this.value);
+			} else {
+				alert('你取消了：' + this.value);
+			}
+		
+		}
+	}
+	oFo.city.onchange = function() {
+		alert(this.value);
+	}
+	oFo.onreset=function(){
+		return confirm('确定要重置吗');
+	}
+
+	}
+
+
+	</script>
+</head>
+<body>
+	<form id="form1" action="https://www.baidu.com">
+		<input type="text" name="text1" />
+
+		<input type="radio" name="ra"  value="男"  checked />男
+		<input type="radio" name="ra" value="女"/>女
+		<input type="radio" name="ra" value="其他" / >其他
+
+		<input type="checkbox" name="che" value="上海"/>上海
+		<input type="checkbox" name="che" value="北京"/>北京
+		<input type="checkbox" name="che" value="重庆"/>重庆
+
+		  <select name="city" value="">
+        	<option>请选择一个城市</option>
+            <option value="北京">北京</option>
+            <option value="上海" selected>上海</option>
+            <option value="广州">广州</option>
+            <option value="深圳">深圳</option>
+        </select>
+
+		<input type="button" name="btn1" value="点击"/>
+        <input type="reset" value="重置" />
+		<input type="submit" value="提交"/>
+
+	</form>
+</body>
+</html>

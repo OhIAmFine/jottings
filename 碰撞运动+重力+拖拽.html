@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	#div1{
+		width: 100px;
+		height: 100px;
+		background:red;
+		position: absolute;
+		left: 100px;
+		top:100px;
+
+	}
+	</style>
+	<script type="text/javascript">
+	window.onload=function(){
+		var Odiv1=document.getElementById('div1');
+		var lastX=0;
+		var lastY=0;
+
+		Odiv1.onmousedown=function(ev){
+			var ev=ev||event;
+			disX=ev.clientX-Odiv1.offsetLeft;
+			disY=ev.clientY-Odiv1.offsetTop;
+			document.onmousemove=function(ev){
+				var ev=ev||event;
+				var l=ev.clientX-disX;
+				var t=ev.clientY-disY;
+				Odiv1.style.left=l+'px';
+				Odiv1.style.top=t+'px';
+				speedX=l-lastX;
+				speedY=t-lastY;
+				lastY=t;
+				lastX=l;
+			}
+
+		}
+		document.onmouseup=function(){
+			document.onmousemove=null;
+			document.onmousedown=null;
+			StartMove();
+		}
+	}
+	var speedX=0;
+	var speedY=0;
+	var timer=null;
+	function StartMove(){
+		clearInterval(timer);
+
+		timer=setInterval(function(){
+			speedY+=3;
+
+			var Odiv1=document.getElementById('div1');
+			var x=Odiv1.offsetLeft+speedX;
+			var y=Odiv1.offsetTop+speedY;
+/*			if (y>document.documentElement.clientHeight) {alert(y);alert(document.documentElement.clientHeight)};
+*/
+			if (y>=(document.documentElement.clientHeight-Odiv1.offsetHeight)) {
+				speedX*=0.8;
+				speedY*=-0.8;
+				y=document.documentElement.clientHeight-Odiv1.offsetHeight;
+			}else if(y<=0){
+				speedX*=0.8;
+				speedY*=-1; 
+				y=0;
+			};
+			if (x>=(document.documentElement.clientWidth-Odiv1.offsetWidth)) {
+				speedX*=-0.8;
+				x=document.documentElement.clientWidth-Odiv1.offsetWidth;
+			}else if (x<=0) {
+				speedX*=-0.8;
+				x=0;
+			};
+			document.title=speedY;
+			Odiv1.style.left=x+'px';
+			Odiv1.style.top=y+'px';
+
+		},30)
+	}
+	</script>
+</head>
+<body>
+	<input type="button" value="开始碰撞" onclick="StartMove()"/>
+	<div id="div1"></div>
+</body>
+</html>

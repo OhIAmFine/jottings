@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	#div1{width: 100px;height: 100px;background-color: white;position: absolute;top: 50px;left: 50px;}
+	#div2{width: 100px;height: 100px;background-color: white;position: absolute;top: 50px;	right: 50px;}
+	#div3{width: 100px;height: 100px;background-color: white;position: absolute;top: 500px;	right: 50px;}
+	#div4{width: 100px;height: 100px;background-color: white;position: absolute;top: 500px;	left: 50px;}
+	</style>
+   <script>
+	window.onload=function(){
+		var oB1=document.getElementById("btn1");
+		var oB2=document.getElementById("btn2");
+		var oB3=document.getElementById("btn3");
+		var oB4=document.getElementById("btn4");
+		var oB5=document.getElementById("btn5");
+		var oB6=document.getElementById("btn6");
+		var oB7=document.getElementById("btn7");
+		var oDiv1=document.getElementById("div1");
+		var oDiv2=document.getElementById("div2");
+		var oDiv3=document.getElementById("div3");
+		var oDiv4=document.getElementById("div4");
+	    var att=['blue','green','gray','purple','#FFDEAD','#FFEC8B','#FF69B4','#FF34B3','#EE30A7'];
+	    var i = 0;
+	    var timer=null;
+////////////////////////////////////////////////////////////////	    
+		oB1.onclick=function(){
+			 doMove(oDiv1,10,900,"left");
+			 doMove(oDiv2,-10,50,"right");
+			 doMove(oDiv3,-10,50,"right");
+			 doMove(oDiv4,10,900,"left");
+		};
+		oB2.onclick=function(){
+				   doMove(oDiv1, -10,50,"left");
+			        doMove(oDiv2,10,900,"right");
+			        doMove(oDiv3,10,900,"right");
+			        doMove(oDiv4,-10,50,"left");
+			    };
+		oB3.onclick=function(){
+					doMove(oDiv1, -10,50,"top");
+					doMove(oDiv2, -10,50,"top");
+					doMove(oDiv3,-10,50,"top");
+			        doMove(oDiv4,-10,50,"top");
+			    };	
+		oB4.onclick=function(){
+					doMove(oDiv1,10,500,"top");
+					doMove(oDiv2, 10,500,"top"); 
+			        doMove(oDiv3,10,500,"top");
+			        doMove(oDiv4,10,500,"top");
+			    };
+		
+		oB5.onclick=function(){
+			  clearInterval(oDiv1.timer);
+			  clearInterval(oDiv2.timer);
+			  clearInterval(oDiv3.timer);
+			  clearInterval(oDiv4.timer);
+			oDiv1.style.top="50px";
+			oDiv2.style.top="50px";
+			oDiv3.style.top="500px";
+			oDiv4.style.top="500px";
+			oDiv1.style.left="50px";
+			oDiv4.style.left="50px";
+			oDiv2.style.right="50px";
+			oDiv3.style.right="50px";
+		}
+		oB6.onclick=function (){
+			setInterval(function(){
+			oDiv1.style.backgroundColor=att[i];
+			oDiv2.style.backgroundColor=att[i+1];
+			oDiv3.style.backgroundColor=att[i+2];
+			oDiv4.style.backgroundColor=att[i+3];
+			i++;
+			i%=att.length;
+			},500);
+			   };
+    	oB7.onclick=function(){
+		doMove(oDiv1,10,1200,"left",function(){
+			doMove(oDiv1,10,500,"top",function(){
+				doMove(oDiv1,-10,100,"left",function(){
+					doMove(oDiv1,-10,50,"top",function(){
+						alert(1)
+					})
+				})
+			})
+		})
+		};
+       var getRight=parseInt(getStyle(oDiv2,"left"));
+			alert(getRight);
+////////////////////////////////////////////////////////////////////////////////
+	    function doMove(obj, num,tar,dir,endFn){
+			  clearInterval(obj.timer);
+		      obj.timer=	setInterval(function(){
+				var speed=parseInt(getStyle(obj,dir))+num;
+					if(num<0){
+			       if(speed<tar){
+			       	clearInterval(obj.timer);
+			       	}}
+			       if(num>0){
+			       		 if(speed>tar){
+			       	clearInterval(obj.timer);
+			       	endFn&&endFn();
+			       }
+			       	}          
+			obj.style[dir]=speed+"px";
+			},10);
+	                  }
+//////////////////////////////////////////////////////////////////////////////
+		function getStyle(obj,attr){
+			/*if(currentStyle){
+				return obj.currentStyle[attr];
+			}
+			if(getComputedStyle){
+				return getComputedStyle(obj)[attr];
+			}*/
+			return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+		}
+////////////////////////////////////////////////////////////////////////////////
+		
+	};
+    </script>
+</head>
+
+<body>
+	<input value="前进 " type="button" id="btn1"></input>
+	<input value="后退" type="button" id="btn2"></input>
+	<input value="向上 " type="button" id="btn3"></input>
+	<input value="向下 " type="button" id="btn4"></input>
+	<input value="清零 " type="button" id="btn5"></input>
+	<input value="变颜色 " type="button" id="btn6"></input>
+	<input value="动起来" type="button" id="btn7"></input>
+	<div id="div1"></div>
+	<div id="div2"></div>
+	<div id="div3"></div>
+	<div id="div4"></div>
+
+</body>
+</html>
