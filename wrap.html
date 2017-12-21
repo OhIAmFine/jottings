@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>蒙版</title>
+	<meta charset="utf-8" name="viewport" content="width=device-width,intial-scale=1.0">
+</head>
+<style type="text/css">
+	#wrap{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		opacity: 0.5;
+		background-color: black;
+		display: none;
+	}
+	#box{
+		width: 200px;
+		height: 200px;
+		background-color: red;
+	}
+	.center {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transition: -50% -50%;
+		background-color: red;
+	}
+</style>
+<script type="text/javascript">
+	window.onload = function() {
+		var wrap = document.getElementById('wrap');
+		var setStyle = document.getElementById('changeStyle');
+		var closeBox= document.getElementById('closeStyle');
+		var oBox = document.getElementById('box');
+		var oWidth = document.getElementById('changeWidth');
+		var oHeight = document.getElementById('changeHeight');
+		setStyle.onclick = function () {
+			wrap.style.display = 'block';
+		}
+		closeBox.onclick = function() {
+			wrap.style.display = 'none';
+		}
+		oWidth.onclick = function(ev) {
+			if (ev.target.value) {
+				oBox.style.width = ev.target.value;
+			}
+		}
+		oHeight.onclick = function(ev) {
+			if (ev.target.value) {
+				oBox.style.height = ev.target.value;
+			}
+		}
+	}
+</script>
+<body>
+<div>
+	<span>点击设置</span>
+	<input type="button" value="changeStyle" id="changeStyle">
+</div>
+<div id="box"></div>
+<div id="wrap">
+	<div class="center">
+		<div>
+			<div id="changeWidth">
+				<label>width</label>
+				<input type="button" value="300px" >
+				<input type="button" value="500px" >
+				<input type="button" value="700px" >
+			</div>
+			<div id="changeHeight">
+				<label>height</label>
+				<input type="button" value="300px" >
+				<input type="button" value="500px" >
+				<input type="button" value="700px" >
+			</div>
+		</div>
+		<input type="button" value="close" id="closeStyle"></input>
+	</div>
+</div>
+</body>
+</html>
